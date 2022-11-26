@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import "./GameArea.css";
+import InputChoice from "./InputChoice";
+import BangHanhDong from "./BangHanhDong";
+
 
 class GameArea extends Component {
     constructor(props) {
@@ -79,7 +82,7 @@ class GameArea extends Component {
         let y = this.state.playerY;
         let map = this.state.map;
         if(y==0) return;
-        if(map[x][y+1]==-1) return;
+        if(map[x][y-1]==-1) return;
         let newMap = map;
         newMap[x][y]=0;
         newMap[x][y-1]=1;
@@ -152,8 +155,16 @@ class GameArea extends Component {
 
     render() {
         return (
+        
+            <div className="App">
             <div className="game-area">
-                <div className="container">{this.map()}</div>
+                <div className="container">
+                    {this.map()}   
+                    
+                </div>
+                
+            </div>
+            <BangHanhDong moveUp={()=>this.moveUp()} moveDown={()=>this.moveDown()} moveLeft={()=>this.moveLeft()} moveRight={()=>this.moveRight()}/>
             </div>
         );
     }
